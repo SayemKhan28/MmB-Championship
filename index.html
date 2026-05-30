@@ -362,13 +362,21 @@
 <body>
 
 <audio id="bgMusic" loop>
-  <source src="music.mp4" type="audio/mpeg">
+  <source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <script>
+const music = document.getElementById("bgMusic");
+
+
 document.addEventListener("click", function () {
-  document.getElementById("bgMusic").play();
+  music.play();
 }, { once: true });
+
+document.addEventListener("dblclick", function () {
+  music.pause();
+  music.currentTime = 0; // restart to beginning (optional)
+});
 </script>
   
 <!-- HERO -->
