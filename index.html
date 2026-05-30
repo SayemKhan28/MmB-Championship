@@ -365,9 +365,11 @@
   <source src="music.mp4" type="audio/mpeg">
 </audio>
 
-<button onclick="document.getElementById('bgMusic').play()">
-  ▶ Play Music
-</button>
+<script>
+document.addEventListener("click", function () {
+  document.getElementById("bgMusic").play();
+}, { once: true });
+</script>
   
 <!-- HERO -->
 <div class="hero" id="heroSection">
