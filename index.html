@@ -362,20 +362,30 @@
 <body>
 
 <audio id="bgMusic" loop>
-  <source src="music.mp4" type="audio/mpeg">
+  <source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <script>
 const music = document.getElementById("bgMusic");
+let isPlaying = false;
 
-
+// first click starts music
 document.addEventListener("click", function () {
-  music.play();
-}, { once: true });
+  if (!isPlaying) {
+    music.play();
+    isPlaying = true;
+  }
+});
 
+// double click toggles play/pause
 document.addEventListener("dblclick", function () {
-  music.pause();
-  music.currentTime = 0; // restart to beginning (optional)
+  if (isPlaying) {
+    music.pause();
+    isPlaying = false;
+  } else {
+    music.play();
+    isPlaying = true;
+  }
 });
 </script>
   
