@@ -316,7 +316,7 @@
   .btn-5:hover { background: linear-gradient(145deg, #4a7d22, #3f6518); box-shadow: 0 0 12px rgba(180,255,180,0.3); }
 
   .btn-half {
-    background: linear-gradient(135deg, #1f5010, #123208);
+    background: linear-gradient(135deg, #1a3a1a, #0f2a0f);
     border-color: rgba(80,180,80,0.55);
     border: 1px solid rgba(100,255,100,0.25);
     color: #88dd88;
@@ -493,7 +493,7 @@ function avatarSvg(name) {
 }
 
 function photoSrc(p) { return p.photo || avatarSvg(p.name); }
-function fmt(s) { return Number.isInteger(s) ? s.toString() : s.toFixed(1); }
+function fmt(s) { const r = Math.round(s * 10) / 10; return Number.isInteger(r) ? r.toString() : r.toFixed(1); }
 
 // ── PODIUM ──
 function renderPodium() {
@@ -530,11 +530,8 @@ function renderGrid() {
         <div class="score-label">POINTS</div>
       </div>
       <div class="controls">
-
-
-  
         <div class="btn-row">
-          <button class="btn btn-half" onclick="addScore(${p.id},0.5)"  title="+½">+½</button>
+          <button class="btn btn-half" onclick="addScore(${p.id},0.1)"  title="+0.1">+.1</button>
           <button class="btn btn-1" onclick="addScore(${p.id},1)"  title="+1">+1</button>
           <button class="btn btn-2" onclick="addScore(${p.id},2)"  title="+2">+2</button>
           <button class="btn btn-3" onclick="addScore(${p.id},3)"  title="+3">+3</button>
@@ -543,7 +540,7 @@ function renderGrid() {
           <button class="btn btn-4" onclick="addScore(${p.id},4)"  title="+4">+4</button>
           <button class="btn btn-5" onclick="addScore(${p.id},5)"  title="+5">+5</button>
         </div>
-        <button class="btn btn-minus-half" onclick="addScore(${p.id},-0.5)" title="-½ point">− ½</button>
+        <button class="btn btn-minus-half" onclick="addScore(${p.id},-0.1)" title="-0.1 point">− .1</button>
         <button class="btn btn-minus" onclick="addScore(${p.id},-1)" title="-1 point">− 1</button>
         <button class="btn btn-reset-sm" onclick="resetPlayer(${p.id})" title="Reset">↺ Reset</button>
       </div>
@@ -552,7 +549,7 @@ function renderGrid() {
 
 // ── ACTIONS ──
 function addScore(id, delta) {
-  scores[id] = Math.max(0, (scores[id]||0) + delta);
+  scores[id] = Math.round(Math.max(0, (scores[id]||0) + delta) * 10) / 10;
   save();
   flashScore(id);
   renderPodium();
