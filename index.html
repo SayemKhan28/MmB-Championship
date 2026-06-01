@@ -289,15 +289,15 @@
   .controls {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 3px;
     flex-shrink: 0;
   }
-  .btn-row { display: flex; gap: 3px; }
+  .btn-row { display: flex; gap: 2px; }
 
   .btn {
-    width: 36px; height: 32px; border-radius: 7px;
+    width: 30px; height: 26px; border-radius: 6px;
     border: none; cursor: pointer;
-    font-size: 0.72rem; font-weight: 700;
+    font-size: 0.62rem; font-weight: 700;
     display: flex; align-items: center; justify-content: center;
     transition: transform 0.13s, box-shadow 0.13s, background 0.13s;
     font-family: 'Cinzel', serif;
@@ -315,15 +315,39 @@
   .btn-4:hover { background: linear-gradient(145deg, #457820, #3a6018); box-shadow: 0 0 12px rgba(160,255,160,0.3); }
   .btn-5:hover { background: linear-gradient(145deg, #4a7d22, #3f6518); box-shadow: 0 0 12px rgba(180,255,180,0.3); }
 
+  .btn-half {
+    background: linear-gradient(135deg, #1f5010, #123208);
+    border-color: rgba(80,180,80,0.55);
+    color: #88dd88;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .btn-half:hover { background: linear-gradient(135deg, #245a24, #183818); border-color: #88dd88; color: #aaffaa; }
+  .btn-minus-half {
+    width: 100%;
+    padding: 5px;
+    border-radius: 6px;
+    border: 1px solid rgba(200,120,200,0.45);
+    background: linear-gradient(135deg, #2a1230, #1a0a20);
+    color: #cc88cc;
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 4px;
+  }
+  .btn-minus-half:hover { background: linear-gradient(135deg, #3d1a45, #2a1035); border-color: #cc88cc; color: #ee99ee; }
   .btn-minus {
     background: linear-gradient(145deg, #5a1515, #3a0a0a); color: #ff9898;
     border: 1px solid rgba(255,80,80,0.25);
-    width: 100%;
+    width: 100%; font-size: 0.62rem;
   }
   .btn-minus:hover { background: linear-gradient(145deg, #7a2222, #5a1515); box-shadow: 0 0 12px rgba(255,80,80,0.3); }
   .btn-reset-sm {
     background: linear-gradient(145deg, #2e1e08, #1e1205); color: var(--gold);
-    border: 1px solid rgba(201,168,76,0.2); width: 100%; font-size: 0.6rem;
+    border: 1px solid rgba(201,168,76,0.2); width: 100%; font-size: 0.55rem;
   }
   .btn-reset-sm:hover { background: linear-gradient(145deg, #4a2e10, #2e1e08); }
 
@@ -505,7 +529,11 @@ function renderGrid() {
         <div class="score-label">POINTS</div>
       </div>
       <div class="controls">
+
+
+  
         <div class="btn-row">
+          <button class="btn btn-half" onclick="addScore(${p.id},0.5)"  title="+½">+½</button>
           <button class="btn btn-1" onclick="addScore(${p.id},1)"  title="+1">+1</button>
           <button class="btn btn-2" onclick="addScore(${p.id},2)"  title="+2">+2</button>
           <button class="btn btn-3" onclick="addScore(${p.id},3)"  title="+3">+3</button>
@@ -514,6 +542,7 @@ function renderGrid() {
           <button class="btn btn-4" onclick="addScore(${p.id},4)"  title="+4">+4</button>
           <button class="btn btn-5" onclick="addScore(${p.id},5)"  title="+5">+5</button>
         </div>
+        <button class="btn btn-minus-half" onclick="addScore(${p.id},-0.5)" title="-½ point">− ½</button>
         <button class="btn btn-minus" onclick="addScore(${p.id},-1)" title="-1 point">− 1</button>
         <button class="btn btn-reset-sm" onclick="resetPlayer(${p.id})" title="Reset">↺ Reset</button>
       </div>
