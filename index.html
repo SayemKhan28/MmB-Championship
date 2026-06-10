@@ -471,8 +471,11 @@ let scores = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
 let photos = JSON.parse(localStorage.getItem(PHOTO_KEY)   || "{}");
 let names  = JSON.parse(localStorage.getItem(NAMES_KEY)   || "{}");
 
+// Default scores: Shahadat=33.7, Meraj=29.8, Sayem=26, Sahil=25.6, Hasib=21.4, Faisal=18, Seam=10, Inan=8.8
+const DEFAULT_SCORES = {1:26, 2:33.7, 3:25.6, 4:18, 5:21.4, 6:10, 7:8.8, 8:29.8};
+
 PLAYERS.forEach(p => {
-  if (scores[p.id] === undefined) scores[p.id] = 0;
+  if (scores[p.id] === undefined) scores[p.id] = DEFAULT_SCORES[p.id] ?? 0;
   if (names[p.id])  p.name  = names[p.id];
   if (photos[p.id]) p.photo = photos[p.id];
 });
